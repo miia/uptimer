@@ -1,0 +1,3 @@
+#updates the longest_uptime file every hour
+*/1 * * * * /home/<user>/uptimer.sh /home/<user>/longest_uptime > /home/<user>/longest_uptime
+
