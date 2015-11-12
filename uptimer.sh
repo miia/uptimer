@@ -18,7 +18,5 @@ echo "$best_uptime" | grep "[0-9]\+" || best_uptime="0" #ensure there is actuall
 #and the winner is...
 if [ $current_uptime -gt $best_uptime ]
 then
-	echo "$current_uptime"$'\n'"$ut" #minutes, then pretty-print format
-else
-	cat $1 2>/dev/null #same as before
+	echo "$current_uptime"$'\n'"$ut" #overwrite with new best uptime (minutes, then pretty-print)
 fi
