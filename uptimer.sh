@@ -12,12 +12,13 @@ mm=$(echo "$ut" | grep --only-matching "[0-9]* minute" | cut -d " " -f 1)
 
 #compute stuff
 current_uptime=$(echo "$dd*24*60+$hh*60+$mm" | bc)
-best_uptime=$(cat $1 2>/dev/null) || best_uptime="0" #file might not exist yet!
+best_uptime=$(head -1 $1 2>/dev/null) #first line of existing file
+echo "$best_uptime" | grep "[0-9]\+" || best_uptime="0" #ensure there is actually some number in the first line of the file...
 
 #and the winner is...
 if [ $current_uptime -gt $best_uptime ]
 then
-	echo $current_uptime
+	echo "$current_uptime"$'\n'"$ut" #minutes, then pretty-print format
 else
-	echo $best_uptime
+	cat $1 2>/dev/null #same as before
 fi
